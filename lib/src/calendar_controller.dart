@@ -171,6 +171,30 @@ class CalendarController {
   void toggleCalendarFormat() {
     _calendarFormat.value = _nextFormat();
   }
+  
+  /// Displays the previous Calendar page.
+  void previousPage() {
+    if (calendarFormat == CalendarFormat.month) {
+      _selectPreviousMonth();
+    } else if (calendarFormat == CalendarFormat.twoWeeks) {
+      _selectPreviousTwoWeeks();
+    } else {
+      _selectPreviousWeek();
+    }
+
+    _visibleDays.value = _getVisibleDays();
+    _decrementPage();
+  }
+
+  /// Displays the next Calendar page.
+  void nextPage() {
+    if (calendarFormat == CalendarFormat.month) {
+      _selectNextMonth();
+    } else if (calendarFormat == CalendarFormat.twoWeeks) {
+      _selectNextTwoWeeks();
+    } else {
+      _selectNextWeek();
+    }
 
   /// Sets calendar format by emulating swipe.
   void swipeCalendarFormat({@required bool isSwipeUp}) {
